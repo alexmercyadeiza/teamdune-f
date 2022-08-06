@@ -7,7 +7,7 @@ const Sidebar = () => {
   return (
     <nav className="bg-white h-screen border-r border-black w-60 fixed pt-5  ">
       <div className=" h-full">
-        <div className="flex flex-col h-fit justify-start pb-16">
+        <div className="flex flex-col h-fit justify-start pb-16 pl-8">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="text-dune-brown w-16 fill-current"
