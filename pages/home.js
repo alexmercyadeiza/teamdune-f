@@ -1,6 +1,14 @@
 import MainLayout from '../components/MainLayout';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export default function Home() {
+  const createSecretKey = async () => {
+    const res = await axios.post('https://api.teamdune.pro/v1/create/app/key');
+
+    console.log('res', res.data);
+  };
+  
   return (
     <MainLayout>
       <div>
@@ -11,18 +19,20 @@ export default function Home() {
       </div>
 
       <div className="max-w-xl mt-10">
-        <div className='mb-4'>
-          <p className="uppercase font-sans text-sm font-normal tracking-wider">recent transactions</p>
+        <div className="mb-4">
+          <p className="uppercase font-sans text-sm font-normal tracking-wider">
+            recent transactions
+          </p>
         </div>
         <table className="w-full text-sm text-left text-black">
           <thead className="text-xs text-black uppercase">
             <tr>
-              <th className='py-2'>Ref</th>
-              <th className='py-2'>Amount</th>
-              <th className='py-2'>Date</th>
+              <th className="py-2">Ref</th>
+              <th className="py-2">Amount</th>
+              <th className="py-2">Date</th>
             </tr>
           </thead>
-          <tbody className=''>
+          <tbody className="">
             <tr className="bg-white border-b py-1">
               <td>RF25464564456</td>
               <td>100,000</td>
