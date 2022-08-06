@@ -12,8 +12,8 @@ const Sidebar = () => {
         </div>
 
         <div className="flex flex-col justify-center h-fit space-y-8">
-          <Link href="/">
-            <a className={`text-xl ${router.pathname == '/' ? 'font-bold' : 'font-normal'} `}>Insight</a>
+          <Link href="/home">
+            <a className={`text-xl ${router.pathname == '/home' ? 'font-bold' : 'font-normal'} `}>Insight</a>
           </Link>
           <Link href="/payment-link">
             <a className={`text-xl ${router.pathname == '/payment-link' ? 'font-bold' : 'font-normal'} `}>Payment links</a>
