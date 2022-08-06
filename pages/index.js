@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import MainLayout from '../components/MainLayout';
 
 export default function Home() {
@@ -24,6 +23,11 @@ export default function Home() {
             </tr>
           </thead>
           <tbody className=''>
+            <tr className="bg-white border-b py-1">
+              <td>RF25464564456</td>
+              <td>100,000</td>
+              <td>6/08/2022</td>
+            </tr>
             <tr className="bg-white border-b py-1">
               <td>RF25464564456</td>
               <td>100,000</td>

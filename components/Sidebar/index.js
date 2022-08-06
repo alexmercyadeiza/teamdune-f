@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const Sidebar = () => {
+  const router = useRouter()
   return (
     <nav className="bg-white h-screen border-r border-black w-60 fixed pt-5  ">
       <div className="p-7 h-full">
@@ -12,10 +13,10 @@ const Sidebar = () => {
 
         <div className="flex flex-col justify-center h-fit space-y-8">
           <Link href="/">
-            <a className="text-xl">Insight</a>
+            <a className={`text-xl ${router.pathname == '/' ? 'font-bold' : 'font-normal'} `}>Insight</a>
           </Link>
-          <Link href="/">
-            <a className="text-xl">Payment links</a>
+          <Link href="/payment-link">
+            <a className={`text-xl ${router.pathname == '/payment-link' ? 'font-bold' : 'font-normal'} `}>Payment links</a>
           </Link>
           <Link href="/">
             <a className="text-xl">Store</a>
