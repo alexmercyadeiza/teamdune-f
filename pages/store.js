@@ -66,7 +66,7 @@ const Store = () => {
           <p>No store, Create a store!</p>
         ) : (
           stores?.map((s) => (
-            <div className="">
+            <div key={s.name} className="">
               <div className="flex items-center justify-between cursor-pointer">
                 <div className="text-xl font-light">{s.name}</div>
                 <div>
