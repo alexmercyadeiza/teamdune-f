@@ -3,6 +3,7 @@ import MainLayout from '../components/MainLayout';
 import { FiCopy } from 'react-icons/fi';
 import { AiOutlineClose } from 'react-icons/ai';
 import Modal from 'react-modal';
+import axios from 'axios';
 
 const customStyles = {
   content: {
@@ -22,7 +23,9 @@ const customStyles = {
 
 const Paymentlink = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [paymentLinks, setPaymentLinks] = useState([]);
   const [amount, setAmount] = useState();
+
   function openModal() {
     setIsOpen(true);
   }
@@ -31,11 +34,27 @@ const Paymentlink = () => {
     setIsOpen(false);
   }
 
-  const createPaymentLink = (e) => {
+  const createPaymentLink = async (e) => {
     e.preventDefault();
+    const res = await axios.post(
+      'https://api.teamdune.pro/v1/pay/create',
+      { merchant_id: 1, amount },
+      {
+        headers: {
+          'dune-sec-key': 'live_sk_d2e10c31c3d808557fe522ce',
+        },
+      }
+    );
 
-    alert(amount)
+    const newLinks = res.data;
+    console.log('res', res.data);
+    paymentLinks.push(newLinks);
+
+    closeModal();
+    setAmount('');
   };
+
+  console.log('data', paymentLinks);
   return (
     <MainLayout>
       <div>
@@ -56,32 +75,26 @@ const Paymentlink = () => {
         <table className="w-full text-sm text-left text-black">
           <thead className="text-xs text-black uppercase">
             <tr>
-              <th className="tracking-wider pb-4">Amount</th>
               <th className="tracking-wider pb-4">Link</th>
-              <th className="tracking-wider pb-4">Date</th>
+              <th className="tracking-wider pb-4"></th>
             </tr>
           </thead>
           <tbody className="">
-            <tr className="bg-white border-b py-4">
-              <td>12,000</td>
-              <td>https://teamdune.pro/pay/2384520</td>
-              <td>
-                {' '}
-                <a className="flex items-center tracking-wider uppercase font-light font-sans cursor-pointer">
-                  <FiCopy size={20} className="mr-2" /> copy
-                </a>
-              </td>
-            </tr>
-            <tr className="bg-white border-b py-4">
-              <td>12,000</td>
-              <td>https://teamdune.pro/pay/2384520</td>
-              <td>
-                {' '}
-                <a className="flex items-center tracking-wider uppercase font-light font-sans cursor-pointer">
-                  <FiCopy size={20} className="mr-2" /> copy
-                </a>
-              </td>
-            </tr>
+            {paymentLinks.length == 0 ? (
+              <p>No payment link, generate one!</p>
+            ) : (
+              paymentLinks?.map((link) => (
+                <tr className="bg-white border-b py-4">
+                  <td>{link.link}</td>
+                  <td>
+                    {' '}
+                    <a className="flex items-center tracking-wider uppercase font-light font-sans cursor-pointer">
+                      <FiCopy size={20} className="mr-2" /> copy
+                    </a>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
