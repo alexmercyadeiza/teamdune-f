@@ -84,7 +84,7 @@ const Paymentlink = () => {
               <p>No payment link, generate one!</p>
             ) : (
               paymentLinks?.map((link) => (
-                <tr className="bg-white border-b py-4">
+                <tr key={link.link} className="bg-white border-b py-4">
                   <td>{link.link}</td>
                   <td>
                     {' '}
