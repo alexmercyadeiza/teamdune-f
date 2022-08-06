@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MainLayout from '../components/MainLayout';
 import { FiCopy } from 'react-icons/fi';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -34,6 +34,16 @@ const Paymentlink = () => {
     setIsOpen(false);
   }
 
+  const getPaymentLinks = async () => {
+    const res = await axios.get('https://api.teamdune.pro/v1/pay/links/1', {
+      headers: {
+        'dune-sec-key': 'live_sk_d2e10c31c3d808557fe522ce',
+      },
+    });
+    setPaymentLinks(res.data.data);
+    console.log('response', res.data);
+  };
+
   const createPaymentLink = async (e) => {
     e.preventDefault();
     const res = await axios.post(
@@ -49,12 +59,16 @@ const Paymentlink = () => {
     const newLinks = res.data;
     console.log('res', res.data);
     paymentLinks.push(newLinks);
-
     closeModal();
     setAmount('');
+    getPaymentLinks();
   };
 
   console.log('data', paymentLinks);
+
+  useEffect(() => {
+    getPaymentLinks();
+  }, []);
   return (
     <MainLayout>
       <div>
@@ -75,6 +89,7 @@ const Paymentlink = () => {
         <table className="w-full text-sm text-left text-black">
           <thead className="text-xs text-black uppercase">
             <tr>
+              <th className="tracking-wider pb-4">Amount</th>
               <th className="tracking-wider pb-4">Link</th>
               <th className="tracking-wider pb-4"></th>
             </tr>
@@ -83,17 +98,31 @@ const Paymentlink = () => {
             {paymentLinks.length == 0 ? (
               <p>No payment link, generate one!</p>
             ) : (
-              paymentLinks?.map((link) => (
-                <tr key={link.link} className="bg-white border-b py-4">
-                  <td>{link.link}</td>
-                  <td>
-                    {' '}
-                    <a className="flex items-center tracking-wider uppercase font-light font-sans cursor-pointer">
-                      <FiCopy size={20} className="mr-2" /> copy
-                    </a>
-                  </td>
-                </tr>
-              ))
+              paymentLinks?.map((link) => {
+                const paymentUrl = `http://localhost:3000/pay/${link.pay_id}`;
+                console.log('paymentUrl', paymentUrl);
+
+                const copyToClipboard = () => {
+                  navigator.clipboard.writeText(paymentUrl);
+                 console.log('copied', paymentUrl);
+                };
+
+                return (
+                  <tr key={link.link} className="bg-white border-b py-4">
+                    <td>{link.amount}</td>
+                    <td>{paymentUrl}</td>
+                    <td>
+                      {' '}
+                      <a
+                        onClick={copyToClipboard}
+                        className="flex items-center tracking-wider uppercase font-light font-sans cursor-pointer"
+                      >
+                        <FiCopy size={20} className="mr-2" /> copy
+                      </a>
+                    </td>
+                  </tr>
+                );
+              })
             )}
           </tbody>
         </table>
