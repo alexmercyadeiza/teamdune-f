@@ -9,11 +9,14 @@ module.exports = {
       fontFamily: {
         sans: ["Switzer"],
       },
+      colors: {
+        "dune-brown": "#BE782F",
+      },
     },
   },
-  plugins: [require('daisyui'), require('@tailwindcss/forms')],
+  plugins: [require("daisyui"), require("@tailwindcss/forms")],
 
   daisyui: {
     themes: false,
-  }
+  },
 };
