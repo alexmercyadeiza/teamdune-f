@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import MainLayout from '../components/MainLayout';
+import MainLayout from '../../components/MainLayout';
 import Modal from 'react-modal';
 import { AiOutlineClose } from 'react-icons/ai';
-import Link from 'next/link';
+
 const customStyles = {
   content: {
     // top: '50%',
@@ -19,10 +19,11 @@ const customStyles = {
   },
 };
 
-const Store = () => {
+const Store1 = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [stores, setStores] = useState([]);
-  const [name, setName] = useState();
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [products, setProducts] = useState([]);
 
   function openModal() {
     setIsOpen(true);
@@ -32,64 +33,61 @@ const Store = () => {
     setIsOpen(false);
   }
 
-  const createStore = (e) => {
+  const createProduct = async (e) => {
     e.preventDefault();
 
-    const newStore = {
+    const newProduct = {
       name,
+      price,
     };
 
-    stores.push(newStore);
+    setProducts([...products, newProduct]);
     closeModal();
     setName('');
-  };
-  console.log(stores);
+    setPrice('');
 
+    console.log(products);
+    // alert(`${name} - ${price}`);
+  };
   return (
     <MainLayout>
-      <div>
+      <div className="flex items-center justify-between max-w-xl">
+        <div>Lido shoes</div>
+        <div>https://teamdune.pro/store/2384520</div>
         <button
           onClick={openModal}
           className="bg-[#D9D9D9] px-4 py-1 capitalize font-light"
         >
-          create a store
+          create product
         </button>
       </div>
-
-      <div className="mt-16 max-w-3xl">
-        <div className="mb-8">
-          <p className="uppercase font-sans text-sm font-light tracking-[0.34em]">
-            stores
+      <div className="max-w-lg mt-10">
+        <div className="mb-4">
+          <p className="uppercase font-sans text-sm font-normal tracking-wider">
+            products
           </p>
         </div>
-        {stores.length == 0 ? (
-          <p>No store, Create a store!</p>
-        ) : (
-          stores?.map((s) => (
-            <Link key={s.name} href="/store/1">
-              <div key={s.name} className="">
-                <div className="flex items-center justify-between cursor-pointer">
-                  <div className="text-xl font-light">{s.name}</div>
-                  <div>
-                    <svg
-                      width="58"
-                      height="16"
-                      viewBox="0 0 58 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M57.7071 8.70711C58.0976 8.31658 58.0976 7.68342 57.7071 7.29289L51.3431 0.928932C50.9526 0.538408 50.3195 0.538408 49.9289 0.928932C49.5384 1.31946 49.5384 1.95262 49.9289 2.34315L55.5858 8L49.9289 13.6569C49.5384 14.0474 49.5384 14.6805 49.9289 15.0711C50.3195 15.4616 50.9526 15.4616 51.3431 15.0711L57.7071 8.70711ZM0 9H57V7H0V9Z"
-                        fill="black"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <div className="h-px w-full bg-black my-5"></div>
-              </div>
-            </Link>
-          ))
-        )}
+        <table className="w-full text-sm text-left text-black">
+          <thead className="text-xs text-black uppercase">
+            <tr>
+              {/* <th className="py-2">Ref</th>
+              <th className="py-2">Amount</th>
+              <th className="py-2">Date</th> */}
+            </tr>
+          </thead>
+          <tbody className="">
+            {products?.length == 0 ? (
+              <p>No product available</p>
+            ) : (
+              products.map((p) => (
+                <tr key={p.name} className="bg-white border-b py-1">
+                  <td>{p.name}</td>
+                  <td>{p.price}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
 
       <Modal
@@ -106,9 +104,9 @@ const Store = () => {
 
         <div
           className="flex flex-col justify-center"
-          style={{ height: 'calc(100% - 100px)' }}
+          style={{ height: 'calc(100% - 200px)' }}
         >
-          <form onSubmit={(e) => createStore(e)} className="relative">
+          <form onSubmit={(e) => createProduct(e)} className="relative">
             <label className="block">
               <span className="text-black text-xs uppercase font-light tracking-[0.34em]">
                 Name
@@ -125,6 +123,25 @@ const Store = () => {
                     focus:ring-0 focus:border-black
                   "
                 onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </label>
+            <label className="block mt-10">
+              <span className="text-black text-xs uppercase font-light tracking-[0.34em]">
+                Price
+              </span>
+              <input
+                type="text"
+                value={price}
+                className="
+                    mt-6
+                    block
+                    w-full
+                    px-0.5
+                    border-0 border-b border-black
+                    focus:ring-0 focus:border-black
+                  "
+                onChange={(e) => setPrice(e.target.value)}
                 required
               />
             </label>
@@ -155,4 +172,4 @@ const Store = () => {
   );
 };
 
-export default Store;
+export default Store1;
