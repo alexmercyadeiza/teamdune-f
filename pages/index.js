@@ -1,17 +1,8 @@
-import Head from "next/head";
+import Head from 'next/head';
+import MainLayout from '../components/MainLayout';
 
 export default function Home() {
-  return (
-    <div>
-      <Head>
-        <title>Team Dune</title>
-        <meta name="description" content="Merchant first e-naira platform." />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <div className="text-gray-500 grid min-h-screen place-items-center">
-        <div className="uppercase text-xs tracking-widest">team dune 22</div>
-      </div>
-    </div>
-  );
+  return <MainLayout>
+    <h1 className=' font-sans font-semibold '>Team Dune</h1>
+  </MainLayout>;
 }
