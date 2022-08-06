@@ -3,6 +3,7 @@ import MainLayout from '../components/MainLayout';
 import { FiCopy } from 'react-icons/fi';
 import { AiOutlineClose } from 'react-icons/ai';
 import Modal from 'react-modal';
+import Link from 'next/link';
 import axios from 'axios';
 
 const customStyles = {
@@ -104,13 +105,15 @@ const Paymentlink = () => {
 
                 const copyToClipboard = () => {
                   navigator.clipboard.writeText(paymentUrl);
-                 console.log('copied', paymentUrl);
+                  console.log('copied', paymentUrl);
                 };
-
+                console.log('link', link);
                 return (
                   <tr key={link.link} className="bg-white border-b py-4">
                     <td>{link.amount}</td>
-                    <td>{paymentUrl}</td>
+                    <Link href={`/pay/${link.pay_id}`}>
+                      <td className='cursor-pointer hover:text-blue-500'>{paymentUrl} </td>
+                    </Link>
                     <td>
                       {' '}
                       <a
