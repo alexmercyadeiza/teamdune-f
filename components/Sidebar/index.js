@@ -18,8 +18,8 @@ const Sidebar = () => {
           <Link href="/payment-link">
             <a className={`text-xl ${router.pathname == '/payment-link' ? 'font-bold' : 'font-normal'} `}>Payment links</a>
           </Link>
-          <Link href="/">
-            <a className="text-xl">Store</a>
+          <Link href="/store">
+            <a className={`text-xl ${router.pathname == '/store' ? 'font-bold' : 'font-normal'} `}>Store</a>
           </Link>
           <Link href="/">
             <a className="text-xl">M2M Transfer</a>
