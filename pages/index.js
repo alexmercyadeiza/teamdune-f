@@ -37,7 +37,7 @@ export default function Home() {
                 name="password"
                 value={pin}
                 onChange={(e) => setPin(e.target.value)}
-                class="py-4 px-4 text-lg block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                className="py-4 px-4 text-lg block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
                 placeholder="Pin"
               />
             </div>
