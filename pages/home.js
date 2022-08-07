@@ -70,35 +70,35 @@ export default function Home() {
             </tbody>
           </table> */}
 
-          <div class="overflow-x-auto relative">
-            <table class="w-full text-sm text-left text-gray-500">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <div className="overflow-x-auto relative">
+            <table className="w-full text-sm text-left text-gray-500">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
-                  <th scope="col" class="py-3">
+                  <th scope="col" className="py-3">
                     reference
                   </th>
-                  <th scope="col" class="py-3">
+                  <th scope="col" className="py-3">
                     customer
                   </th>
-                  <th scope="col" class="py-3">
+                  <th scope="col" className="py-3">
                     amount
                   </th>
-                  <th scope="col" class="py-3">
+                  <th scope="col" className="py-3">
                     date
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b">
+                <tr className="border-b">
                   <th
                     scope="row"
-                    class="py-4 font-medium text-gray-900 whitespace-nowrap"
+                    className="py-4 font-medium text-gray-900 whitespace-nowrap"
                   >
-                    Apple MacBook Pro 17"
+                    Apple MacBook Pro 17
                   </th>
-                  <td class="py-4">davidcarson@gmail.com</td>
-                  <td class="py-4">₦2,999.00</td>
-                  <td class="py-4">Aug 12th, 2022</td>
+                  <td className="py-4">davidcarson@gmail.com</td>
+                  <td className="py-4">₦2,999.00</td>
+                  <td className="py-4">Aug 12th, 2022</td>
                 </tr>
               </tbody>
             </table>

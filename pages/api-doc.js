@@ -100,25 +100,25 @@ export default function ApiDoc() {
           </div>
 
           <div>
-            <div class="overflow-x-auto relative">
-              <table class="w-full text-sm text-left">
+            <div className="overflow-x-auto relative">
+              <table className="w-full text-sm text-left">
                 <tbody>
-                  <tr class="border-b">
-                    <th scope="row" class="py-4 font-medium whitespace-nowrap">
+                  <tr className="border-b">
+                    <th scope="row" className="py-4 font-medium whitespace-nowrap">
                       Generate a payment link
                     </th>
-                    <td class="py-4 space-y-2">
+                    <td className="py-4 space-y-2">
                       <div className="text-orange-500">POST</div>
                       <div>https://api.teamdune.pro/v1/pay/create</div>
                     </td>
-                    <td class="py-4 space-y-2">
+                    <td className="py-4 space-y-2">
                       <div className="text-blue-500">Headers</div>
                       <div className="flex items-center space-x-1">
                         <div className="font-medium">dune-sec-key</div>
                         <div className="text-2xs">(App secret key)</div>
                       </div>
                     </td>
-                    <td class="py-4 space-y-2">
+                    <td className="py-4 space-y-2">
                       <div className="text-red-500">Body</div>
                       {/* <div className="font-medium">merchant_id</div> */}
                       <div className="font-medium">amount</div>

@@ -144,27 +144,27 @@ const Paymentlink = () => {
           </tbody>
         </table> */}
 
-        <div class="overflow-x-auto relative">
-          <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <div className="overflow-x-auto relative">
+          <table className="w-full text-sm text-left text-gray-500">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50">
               <tr>
-                <th scope="col" class="py-3">
+                <th scope="col" className="py-3">
                   amount
                 </th>
-                <th scope="col" class="py-3">
+                <th scope="col" className="py-3">
                   link
                 </th>
-                <th scope="col" class="py-3"></th>
+                <th scope="col" className="py-3"></th>
               </tr>
             </thead>
             {/* <tbody>
-              <tr class="border-b">
+              <tr className="border-b">
                 <th
                   scope="row"
-                  class="py-4 font-medium text-gray-900 whitespace-nowrap"
+                  className="py-4 font-medium text-gray-900 whitespace-nowrap"
                 ></th>
-                <td class="py-4"></td>
-                <td class="py-4"></td>
+                <td className="py-4"></td>
+                <td className="py-4"></td>
               </tr>
             </tbody> */}
 
@@ -300,15 +300,15 @@ const Paymentlink = () => {
                         <svg
                           onClick={closeModal}
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-6 w-6 hover:opacity-70 cursor-pointer"
+                          className="h-6 w-6 hover:opacity-70 cursor-pointer"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
-                          stroke-width="2"
+                          strokeWidth="2"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             d="M6 18L18 6M6 6l12 12"
                           />
                         </svg>
@@ -317,7 +317,7 @@ const Paymentlink = () => {
                       <div className="mt-2">
                         <input
                           type="text"
-                          class="mt-0 w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
+                          className="mt-0 w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
                           placeholder="amount"
                           value={amount}
                           onChange={(e) => setAmount(e.target.value)}
