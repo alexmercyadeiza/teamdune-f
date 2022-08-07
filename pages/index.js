@@ -1,6 +1,6 @@
-import MainLayout from '../components/MainLayout';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import MainLayout from "../components/MainLayout";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Home() {
   const router = useRouter();
@@ -8,7 +8,7 @@ export default function Home() {
 
   const enterButton = (e) => {
     e.preventDefault();
-    pin !== "1234" ? alert('Wrong pin') : router.push('/home');
+    pin !== "1234" ? alert("Wrong pin") : router.push("/home");
   };
 
   return (
@@ -51,8 +51,9 @@ export default function Home() {
             </div>
 
             <div className="text-xs text-gray-400 mt-6 uppercase">
-                  A project by, Adeiza-mercy alexander, david akpughe, akwunte amali, preye warde
-                </div>
+              A project by, Adeiza-mercy alexander, david akpughe, akwunte
+              amali, preye warde
+            </div>
           </form>
         </div>
       </div>
