@@ -33,12 +33,18 @@ const PayId = () => {
     narration: 'Lido Shoes',
     pay_id: payid,
   });
+  const [pinFormData, setPinFormData] = useState({
+    phone: '',
+    pin: '',
+    pay_id: payid,
+  });
   const [useEmail, setUseEmail] = useState(false);
   const [usePin, setUsePin] = useState(false);
   const [price, setPrice] = useState();
   const [show, setShow] = useState('');
 
   const { email, password } = emailFormData;
+  const { phone, pin } = pinFormData;
 
   useEffect(() => {
     getPaymentData();
@@ -63,6 +69,10 @@ const PayId = () => {
     const { name, value } = e.target;
     setEmailFormData({ ...emailFormData, [name]: value });
   };
+  const handleChangePin = (e) => {
+    const { name, value } = e.target;
+    setPinFormData({ ...pinFormData, [name]: value });
+  };
 
   const moveToPayment = () => {
     useEmail ? setShow('Email') : usePin ? setShow('Pin') : '';
@@ -84,6 +94,29 @@ const PayId = () => {
       const res = await axios.post(
         'https://api.teamdune.pro/v1/pay/authorize/one',
         emailFormData,
+        {
+          headers: {
+            'dune-sec-key': 'live_sk_d2e10c31c3d808557fe522ce',
+          },
+        }
+      );
+      setShow('complete');
+
+      setTimeout(() => {
+        router.push('/payment-link');
+      }, 2000);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const pinOptionPayment = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(
+        'https://api.teamdune.pro/v1/pay/authorize/two',
+        pinFormData,
         {
           headers: {
             'dune-sec-key': 'live_sk_d2e10c31c3d808557fe522ce',
@@ -240,7 +273,14 @@ const PayId = () => {
       emailOptionPayment={emailOptionPayment}
     />
   ) : show === 'Pin' ? (
-    <UsingPin price={price} handleShow={handleShow} />
+    <UsingPin
+      price={price}
+      handleShow={handleShow}
+      handleChangePin={handleChangePin}
+      pin={pin}
+      phone={phone}
+      pinOptionPayment={pinOptionPayment}
+    />
   ) : show === 'complete' ? (
     <Success />
   ) : null;

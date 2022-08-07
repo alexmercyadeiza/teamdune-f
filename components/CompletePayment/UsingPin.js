@@ -1,6 +1,13 @@
 import React from 'react';
 
-const UsingPin = ({ price, handleShow }) => {
+const UsingPin = ({
+  price,
+  handleShow,
+  phone,
+  pin,
+  handleChangePin,
+  pinOptionPayment,
+}) => {
   return (
     <div
       className="relative z-10"
@@ -12,7 +19,7 @@ const UsingPin = ({ price, handleShow }) => {
 
       <div className="fixed inset-0 z-10 grid place-items-center overflow-y-auto">
         <div className="flex min-h-full w-1/4 items-end justify-center text-center sm:items-center sm:p-0">
-          <form className="relative w-full transform space-y-12 overflow-hidden rounded-lg bg-white p-10 text-left shadow-xl transition-all sm:my-8">
+          <form onSubmit={pinOptionPayment} className="relative w-full transform space-y-12 overflow-hidden rounded-lg bg-white p-10 text-left shadow-xl transition-all sm:my-8">
             <div className="bg-white">
               <div className="">
                 <div className="space-y-10 text-center sm:mt-0 sm:text-left">
@@ -22,7 +29,7 @@ const UsingPin = ({ price, handleShow }) => {
                         className="text-4xl font-medium leading-6 text-gray-900"
                         id="modal-title"
                       >
-                        ₦ {price}
+                        ₦ {price} pin
                       </h3>
                     </div>
                     <svg
@@ -48,15 +55,21 @@ const UsingPin = ({ price, handleShow }) => {
 
                   <ul className="grid w-full gap-6">
                     <input
+                      name="phone"
+                      value={phone}
+                      onChange={handleChangePin}
                       type="text"
                       className="mt-0 w-full border-0 border-b-2 border-gray-200 px-0.5 focus:border-black focus:ring-0"
-                      placeholder="Your eNaira Email"
+                      placeholder="Phone Number"
                       required
                     />
                     <input
+                      name="pin"
+                      value={pin}
+                      onChange={handleChangePin}
                       type="text"
                       className="mt-0 w-full border-0 border-b-2 border-gray-200 px-0.5 focus:border-black focus:ring-0"
-                      placeholder="Your eNaira Password"
+                      placeholder="Pin"
                       required
                     />
                   </ul>
