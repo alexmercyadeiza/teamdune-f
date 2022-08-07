@@ -173,21 +173,21 @@ const Paymentlink = () => {
                 <p>No payment link, generate one!</p>
               ) : (
                 paymentLinks?.map((link) => {
-                  const paymentUrl = `http://localhost:3000/pay/${link.pay_id}`;
+                  const paymentUrl = `https://www.teamdune.pro/${link.pay_id}`;
                   console.log("paymentUrl", paymentUrl);
 
                   const copyToClipboard = () => {
                     navigator.clipboard.writeText(paymentUrl);
-                    console.log('copied', paymentUrl);
-                    toast.success('Copied!');
+                    console.log("copied", paymentUrl);
+                    toast.success("Copied!");
                   };
-                  console.log('link', link);
+                  console.log("link", link);
                   return (
                     <tr key={link.link} className="border-b">
                       <td className="py-4">₦{link.amount}</td>
                       <Link href={`/pay/${link.pay_id}`}>
                         <td className="cursor-pointer py-4 hover:text-blue-500">
-                          {paymentUrl}{' '}
+                          {paymentUrl}{" "}
                         </td>
                       </Link>
                       <td>
