@@ -46,6 +46,7 @@ const PayId = () => {
   const [usePin, setUsePin] = useState(false);
   const [price, setPrice] = useState();
   const [show, setShow] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const { email, password } = emailFormData;
   const { phone, pin } = pinFormData;
@@ -96,6 +97,7 @@ const PayId = () => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const res = await axios.post(
         'https://api.teamdune.pro/v1/pay/authorize/one',
         {...emailFormData, pay_id: payid},
@@ -105,6 +107,7 @@ const PayId = () => {
           },
         }
       );
+      setLoading(false);
       setShow('complete');
 
       setTimeout(() => {
@@ -119,6 +122,7 @@ const PayId = () => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const res = await axios.post(
         'https://api.teamdune.pro/v1/pay/authorize/two',
         {...pinFormData, pay_id: payid},
@@ -128,6 +132,8 @@ const PayId = () => {
           },
         }
       );
+      setLoading(false);
+
       setShow('complete');
 
       setTimeout(() => {
@@ -276,6 +282,7 @@ const PayId = () => {
       password={password}
       handleChange={handleChange}
       emailOptionPayment={emailOptionPayment}
+      loading={loading}
     />
   ) : show === 'Pin' ? (
     <UsingPin
@@ -285,6 +292,7 @@ const PayId = () => {
       pin={pin}
       phone={phone}
       pinOptionPayment={pinOptionPayment}
+      loading={loading}
     />
   ) : show === 'complete' ? (
     <Success />
