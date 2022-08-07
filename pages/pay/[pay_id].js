@@ -3,7 +3,9 @@ import axios from 'axios';
 import { AiOutlineClose } from 'react-icons/ai';
 import UsingEmail from '../../components/CompletePayment/UsingEmail';
 import UsingPin from '../../components/CompletePayment/UsingPin';
+import Success from '../../components/CompletePayment/Success';
 
+import { useRouter } from 'next/router';
 const customStyles = {
   // top: '50%',
   // left: '50%',
@@ -21,21 +23,22 @@ const customStyles = {
 };
 
 const PayId = () => {
+  const router = useRouter();
+  const [payid, setPayId] = useState(window?.location?.pathname.split('/')[2]);
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [emailFormData, setEmailFormData] = useState({
+    email: '',
+    password: '',
+    destination_wallet_alias: '@imbah.01',
+    narration: 'Lido Shoes',
+    pay_id: payid,
+  });
   const [useEmail, setUseEmail] = useState(false);
   const [usePin, setUsePin] = useState(false);
   const [price, setPrice] = useState();
   const [show, setShow] = useState('');
 
-  const moveToPayment = () => {
-    useEmail ? setShow('Email') : usePin ? setShow('Pin') : '';
-  };
-
-  const handleShow = (str) => {
-    setShow(str);
-  };
+  const { email, password } = emailFormData;
 
   useEffect(() => {
     getPaymentData();
@@ -53,9 +56,53 @@ const PayId = () => {
     );
     console.log('response', res.data);
     setPrice(res.data?.data?.amount);
+    setPayId(res.data?.data?.pay_id);
   };
 
-  console.log('price', price);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEmailFormData({ ...emailFormData, [name]: value });
+  };
+
+  const moveToPayment = () => {
+    useEmail ? setShow('Email') : usePin ? setShow('Pin') : '';
+
+    if (show == '') {
+      setUseEmail(false);
+      setUsePin(false);
+    }
+  };
+
+  const handleShow = (str) => {
+    setShow(str);
+  };
+
+  const emailOptionPayment = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(
+        'https://api.teamdune.pro/v1/pay/authorize/one',
+        emailFormData,
+        {
+          headers: {
+            'dune-sec-key': 'live_sk_d2e10c31c3d808557fe522ce',
+          },
+        }
+      );
+      setShow('complete');
+
+      setTimeout(() => {
+        router.push('/payment-link');
+      }, 2000);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  console.log('payid', payid);
+  console.log('show', show);
 
   return show === '' ? (
     <div
@@ -67,11 +114,8 @@ const PayId = () => {
       <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
       <div className="fixed inset-0 z-10 grid place-items-center overflow-y-auto">
-        <div className="flex min-h-full w-1/4 items-end justify-center text-center sm:items-center sm:p-0">
-          <form
-            onSubmit={moveToPayment}
-            className="relative w-full transform space-y-12 overflow-hidden rounded-lg bg-white p-10 text-left shadow-xl transition-all sm:my-8"
-          >
+        <div className="flex min-h-full max-w-[356px] items-end justify-center text-center sm:items-center sm:p-0">
+          <form className="relative w-full transform space-y-12 overflow-hidden rounded-lg bg-white p-10 text-left shadow-xl transition-all sm:my-8">
             <div className="bg-white">
               <div className="">
                 <div className="space-y-10 text-center sm:mt-0 sm:text-left">
@@ -150,6 +194,7 @@ const PayId = () => {
             </div>
             <div className="">
               <button
+                onClick={moveToPayment}
                 type="submit"
                 className="bg-dune-brown hover:bg-dune-brown btn btn-block flex items-center justify-between rounded-md border-none px-6 capitalize"
               >
@@ -186,9 +231,18 @@ const PayId = () => {
       </div>
     </div>
   ) : show === 'Email' ? (
-    <UsingEmail price={price} handleShow={handleShow} />
+    <UsingEmail
+      price={price}
+      handleShow={handleShow}
+      email={email}
+      password={password}
+      handleChange={handleChange}
+      emailOptionPayment={emailOptionPayment}
+    />
   ) : show === 'Pin' ? (
     <UsingPin price={price} handleShow={handleShow} />
+  ) : show === 'complete' ? (
+    <Success />
   ) : null;
 };
 

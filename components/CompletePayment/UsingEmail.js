@@ -1,6 +1,13 @@
 import React from 'react';
 
-const UsingEmail = ({ price, handleShow }) => {
+const UsingEmail = ({
+  price,
+  handleShow,
+  email,
+  password,
+  handleChange,
+  emailOptionPayment,
+}) => {
   console.log(price);
   return (
     <div
@@ -13,7 +20,10 @@ const UsingEmail = ({ price, handleShow }) => {
 
       <div className="fixed inset-0 z-10 grid place-items-center overflow-y-auto">
         <div className="flex min-h-full w-1/4 items-end justify-center text-center sm:items-center sm:p-0">
-          <form className="relative w-full transform space-y-12 overflow-hidden rounded-lg bg-white p-10 text-left shadow-xl transition-all sm:my-8">
+          <form
+            onSubmit={emailOptionPayment}
+            className="relative w-full transform space-y-12 overflow-hidden rounded-lg bg-white p-10 text-left shadow-xl transition-all sm:my-8"
+          >
             <div className="bg-white">
               <div className="">
                 <div className="space-y-10 text-center sm:mt-0 sm:text-left">
@@ -49,12 +59,18 @@ const UsingEmail = ({ price, handleShow }) => {
 
                   <ul className="grid w-full gap-6">
                     <input
+                      name="email"
+                      value={email}
+                      onChange={handleChange}
                       type="text"
                       className="mt-0 w-full border-0 border-b-2 border-gray-200 px-0.5 focus:border-black focus:ring-0"
                       placeholder="Your eNaira Email"
                       required
                     />
                     <input
+                      name="password"
+                      value={password}
+                      onChange={handleChange}
                       type="text"
                       className="mt-0 w-full border-0 border-b-2 border-gray-200 px-0.5 focus:border-black focus:ring-0"
                       placeholder="Your eNaira Password"
