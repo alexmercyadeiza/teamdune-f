@@ -43,7 +43,7 @@ const UsingPin = ({
                         className="text-4xl font-medium leading-6 text-gray-900"
                         id="modal-title"
                       >
-                        ₦ {price} pin
+                        ₦ {price}
                       </h3>
                     </div>
                     <svg

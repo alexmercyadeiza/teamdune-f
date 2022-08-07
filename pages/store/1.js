@@ -122,6 +122,7 @@ const Store1 = () => {
 
           <div>
             <button
+              disabled
               onClick={openModal}
               className="btn btn-sm bg-dune-brown border-none hover:bg-dune-brown rounded-md px-6 capitalize"
             >
