@@ -170,10 +170,10 @@ const Paymentlink = () => {
 
             <tbody className="">
               {paymentLinks.length == 0 ? (
-                <p>No payment link, generate one!</p>
+                <div className="text-gray-400 text-center">No payment link, generate one!</div>
               ) : (
                 paymentLinks?.map((link) => {
-                  const paymentUrl = `http://localhost:3000/pay/${link.pay_id}`;
+                  const paymentUrl = `https://teamdune.pro/pay/${link.pay_id}`;
                   console.log("paymentUrl", paymentUrl);
 
                   const copyToClipboard = () => {
