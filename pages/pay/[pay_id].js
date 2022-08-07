@@ -4,6 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import UsingEmail from '../../components/CompletePayment/UsingEmail';
 import UsingPin from '../../components/CompletePayment/UsingPin';
 import Success from '../../components/CompletePayment/Success';
+import { toast } from 'react-hot-toast';
 
 import { useRouter } from 'next/router';
 const customStyles = {
@@ -100,7 +101,7 @@ const PayId = () => {
       setLoading(true);
       const res = await axios.post(
         'https://api.teamdune.pro/v1/pay/authorize/one',
-        {...emailFormData, pay_id: payid},
+        { ...emailFormData, pay_id: payid },
         {
           headers: {
             'dune-sec-key': 'live_sk_d2e10c31c3d808557fe522ce',
@@ -115,7 +116,10 @@ const PayId = () => {
       }, 2000);
       console.log(res.data);
     } catch (err) {
-      console.log(err);
+      setLoading(false);
+      const msg = err.response?.data?.message
+      console.log(err.response?.data?.message);
+      toast.error(msg);
     }
   };
   const pinOptionPayment = async (e) => {
@@ -125,7 +129,7 @@ const PayId = () => {
       setLoading(true);
       const res = await axios.post(
         'https://api.teamdune.pro/v1/pay/authorize/two',
-        {...pinFormData, pay_id: payid},
+        { ...pinFormData, pay_id: payid },
         {
           headers: {
             'dune-sec-key': 'live_sk_d2e10c31c3d808557fe522ce',
@@ -141,7 +145,10 @@ const PayId = () => {
       }, 2000);
       console.log(res.data);
     } catch (err) {
-      console.log(err);
+      setLoading(false);
+      const msg = err.response?.data?.message
+      console.log(err.response?.data?.message);
+      toast.error(msg);
     }
   };
 
