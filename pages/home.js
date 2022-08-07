@@ -1,13 +1,34 @@
 import MainLayout from "../components/MainLayout";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const createSecretKey = async () => {
     const res = await axios.post("https://api.teamdune.pro/v1/create/app/key");
-
     console.log("res", res.data);
   };
+
+  const [transactions, setTransactions] = useState([]);
+  const [totalValue, setTotalValue] = useState(0);
+
+  useEffect(() => {
+    getTxns();
+  }, []);
+
+  const getTxns = async () => {
+    const res = await axios.get(
+      'https://api.teamdune.pro/v1/transactions',
+      {
+        headers: {
+          'dune-sec-key': 'live_sk_d2e10c31c3d808557fe522ce',
+        },
+      }
+    );
+
+    setTransactions(res.data.data);
+    setTotalValue(res.data.total_val);
+  }
 
   return (
     <MainLayout>
@@ -23,7 +44,7 @@ export default function Home() {
               total value
             </p>
             <div className="mt-4">
-              <h1 className="text-7xl">₦0.00</h1>
+              <h1 className="text-7xl">₦{totalValue}</h1>
             </div>
           </div>
 
@@ -31,8 +52,8 @@ export default function Home() {
             <p className="text-dune-brown font-sans text-sm font-normal tracking-widest uppercase">
               total volume
             </p>
-             <div className="mt-4">
-              <h1 className="text-7xl text-gray-500">0</h1>
+            <div className="mt-4">
+              <h1 className="text-7xl text-gray-500">{transactions.length}</h1>
             </div>
           </div>
         </div>
@@ -45,7 +66,12 @@ export default function Home() {
             </p>
 
             <div>
-              <button disabled className="btn btn-sm bg-dune-brown border-none hover:bg-dune-brown rounded-md px-6 capitalize">view all</button>
+              <button
+                disabled
+                className="btn btn-sm bg-dune-brown border-none hover:bg-dune-brown rounded-md px-6 capitalize"
+              >
+                view all
+              </button>
             </div>
           </div>
           {/* <table className="w-full text-sm text-left text-black">
@@ -70,39 +96,45 @@ export default function Home() {
             </tbody>
           </table> */}
 
-          <div className="overflow-x-auto relative">
-            <table className="w-full text-sm text-left text-gray-500">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-                <tr>
-                  <th scope="col" className="py-3">
-                    reference
-                  </th>
-                  <th scope="col" className="py-3">
-                    customer
-                  </th>
-                  <th scope="col" className="py-3">
-                    amount
-                  </th>
-                  <th scope="col" className="py-3">
-                    date
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b">
-                  <th
-                    scope="row"
-                    className="py-4 font-medium text-gray-900 whitespace-nowrap"
-                  >
-                    Apple MacBook Pro 17
-                  </th>
-                  <td className="py-4">davidcarson@gmail.com</td>
-                  <td className="py-4">₦2,999.00</td>
-                  <td className="py-4">Aug 12th, 2022</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          {transactions.length !== 0 ? (
+            <div className="overflow-x-auto relative">
+              <table className="w-full text-sm text-left text-gray-500">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                  <tr>
+                    <th scope="col" className="py-3">
+                      reference
+                    </th>
+                    <th scope="col" className="py-3">
+                      customer
+                    </th>
+                    <th scope="col" className="py-3">
+                      amount
+                    </th>
+                    <th scope="col" className="py-3">
+                      date
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {transactions.map((t) => (
+                    <tr className="border-b">
+                      <th
+                        scope="row"
+                        className="py-4 font-medium text-gray-900 whitespace-nowrap"
+                      >
+                        {t?.reference}
+                      </th>
+                      <td className="py-4">{t?.customer}</td>
+                      <td className="py-4">₦{t?.amount}</td>
+                      <td className="py-4">{t?.date}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="text-gray-400 text-center">No transactions.</div>
+          )}
         </div>
       </div>
     </MainLayout>

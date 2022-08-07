@@ -173,7 +173,7 @@ const Paymentlink = () => {
                 <p>No payment link, generate one!</p>
               ) : (
                 paymentLinks?.map((link) => {
-                  const paymentUrl = `http://localhost:3000/pay/${link.pay_id}`;
+                  const paymentUrl = `https://teamdune.pro/pay/${link.pay_id}`;
                   console.log("paymentUrl", paymentUrl);
 
                   const copyToClipboard = () => {
