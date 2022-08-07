@@ -1,4 +1,5 @@
 import React from 'react';
+import { Ring } from '@uiball/loaders';
 
 const UsingPin = ({
   price,
@@ -7,6 +8,7 @@ const UsingPin = ({
   pin,
   handleChangePin,
   pinOptionPayment,
+  loading,
 }) => {
   return (
     <div
@@ -19,7 +21,19 @@ const UsingPin = ({
 
       <div className="fixed inset-0 z-10 grid place-items-center overflow-y-auto">
         <div className="flex min-h-full w-1/4 items-end justify-center text-center sm:items-center sm:p-0">
-          <form onSubmit={pinOptionPayment} className="relative w-full transform space-y-12 overflow-hidden rounded-lg bg-white p-10 text-left shadow-xl transition-all sm:my-8">
+          {loading ? (
+            <div className="absolute top-1/2 z-50">
+              <Ring size={40} lineWeight={5} speed={2} color="black" />
+            </div>
+          ) : (
+            ''
+          )}
+          <form
+            onSubmit={pinOptionPayment}
+            className={`relative w-full transform space-y-12 overflow-hidden rounded-lg ${
+              loading ? 'blur-lg' : 'bg-white'
+            } p-10 text-left shadow-xl transition-all sm:my-8`}
+          >
             <div className="bg-white">
               <div className="">
                 <div className="space-y-10 text-center sm:mt-0 sm:text-left">
