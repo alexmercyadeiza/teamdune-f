@@ -90,7 +90,7 @@ const Sidebar = () => {
                 />
               </svg>
 
-              <div>Payment cards</div>
+              <div>Payment links</div>
             </div>
           </div>
 
