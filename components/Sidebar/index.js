@@ -7,7 +7,7 @@ const Sidebar = () => {
   const inactive = "opacity-70 grayscale";
   const active = "text-dune-brown";
   return (
-    <aside className="sticky top-0 min-h-screen w-96 bg-white">
+    <aside className="sticky top-0 h-screen w-96 bg-white">
       <div className="flex h-screen flex-col justify-between">
         <header className="grid px-10 py-10">
           {/* <svg
@@ -90,7 +90,7 @@ const Sidebar = () => {
                 />
               </svg>
 
-              <div>Payment cards</div>
+              <div>Payment links</div>
             </div>
           </div>
 
