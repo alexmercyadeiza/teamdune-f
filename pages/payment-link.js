@@ -50,7 +50,7 @@ const Paymentlink = () => {
     e.preventDefault();
     const res = await axios.post(
       'https://api.teamdune.pro/v1/pay/create',
-      { merchant_id: 1, amount },
+      { merchant_id: 1, amount: amount * 100 },
       {
         headers: {
           'dune-sec-key': 'live_sk_d2e10c31c3d808557fe522ce',
@@ -173,7 +173,7 @@ const Paymentlink = () => {
                 <p>No payment link, generate one!</p>
               ) : (
                 paymentLinks?.map((link) => {
-                  const paymentUrl = `http://localhost:3000/pay/${link.pay_id}`;
+                  const paymentUrl = `https://www.teamdune.pro/${link.pay_id}`;
                   console.log("paymentUrl", paymentUrl);
 
                   const copyToClipboard = () => {
