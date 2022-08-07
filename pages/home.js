@@ -117,7 +117,7 @@ export default function Home() {
                 </thead>
                 <tbody>
                   {transactions.map((t) => (
-                    <tr className="border-b">
+                    <tr key={t?.reference} className="border-b">
                       <th
                         scope="row"
                         className="py-4 font-medium text-gray-900 whitespace-nowrap"
