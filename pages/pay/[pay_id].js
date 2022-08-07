@@ -24,20 +24,24 @@ const customStyles = {
 
 const PayId = () => {
   const router = useRouter();
-  const [payid, setPayId] = useState(window?.location?.pathname.split('/')[2]);
+  const [payid, setPayId] = useState('');
+
+  const [myPayId, setMyPayId] = useState('');
+
   const [name, setName] = useState('');
   const [emailFormData, setEmailFormData] = useState({
     email: '',
     password: '',
     destination_wallet_alias: '@imbah.01',
     narration: 'Lido Shoes',
-    pay_id: payid,
+    pay_id: '',
   });
   const [pinFormData, setPinFormData] = useState({
     phone: '',
     pin: '',
-    pay_id: payid,
+    pay_id: '',
   });
+  console.log('payid-----', myPayId);
   const [useEmail, setUseEmail] = useState(false);
   const [usePin, setUsePin] = useState(false);
   const [price, setPrice] = useState();
@@ -63,6 +67,7 @@ const PayId = () => {
     console.log('response', res.data);
     setPrice(res.data?.data?.amount);
     setPayId(res.data?.data?.pay_id);
+    setMyPayId(res.data?.data?.pay_id);
   };
 
   const handleChange = (e) => {
@@ -93,7 +98,7 @@ const PayId = () => {
     try {
       const res = await axios.post(
         'https://api.teamdune.pro/v1/pay/authorize/one',
-        emailFormData,
+        {...emailFormData, pay_id: payid},
         {
           headers: {
             'dune-sec-key': 'live_sk_d2e10c31c3d808557fe522ce',
@@ -116,7 +121,7 @@ const PayId = () => {
     try {
       const res = await axios.post(
         'https://api.teamdune.pro/v1/pay/authorize/two',
-        pinFormData,
+        {...pinFormData, pay_id: payid},
         {
           headers: {
             'dune-sec-key': 'live_sk_d2e10c31c3d808557fe522ce',
@@ -192,7 +197,7 @@ const PayId = () => {
                         required
                       />
                       <label
-                        for="hosting-small"
+                        htmlFor="hosting-small"
                         className="gray-300 d:text-blue-500 peer-checked:border-dune-brown peer-checked:text-dune-brown inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600"
                       >
                         <div className="block">
@@ -211,7 +216,7 @@ const PayId = () => {
                         className="peer hidden"
                       />
                       <label
-                        for="hosting-big"
+                        htmlFor="hosting-big"
                         className="gray-300 peer-checked:border-dune-brown peer-checked:text-dune-brown inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600"
                       >
                         <div className="block">
@@ -238,11 +243,11 @@ const PayId = () => {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="1"
+                  strokeWidth="1"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M14 5l7 7m0 0l-7 7m7-7H3"
                   />
                 </svg>
