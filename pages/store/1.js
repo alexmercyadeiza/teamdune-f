@@ -137,26 +137,26 @@ const Store1 = () => {
           </p>
         </div>
 
-        <div class="overflow-x-auto relative">
-          <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <div className="overflow-x-auto relative">
+          <table className="w-full text-sm text-left text-gray-500">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50">
               <tr>
-                <th scope="col" class="py-3"></th>
+                <th scope="col" className="py-3"></th>
 
-                <th scope="col" class="py-3">
+                <th scope="col" className="py-3">
                   name
                 </th>
-                <th scope="col" class="py-3">
+                <th scope="col" className="py-3">
                   price
                 </th>
-                <th scope="col" class="py-3">
+                <th scope="col" className="py-3">
                   in stock
                 </th>
-                <th scope="col" class="py-3"></th>
+                <th scope="col" className="py-3"></th>
               </tr>
             </thead>
             <tbody>
-              <tr class="border-b text-lg">
+              <tr className="border-b text-lg">
                 <td>
                   <div
                     className="w-16 bg-cover bg-center h-16 rounded-full bg-gray-500 overflow-hidden"
@@ -167,18 +167,18 @@ const Store1 = () => {
                 </td>
                 <th
                   scope="row"
-                  class="py-4 font-medium text-gray-900 whitespace-nowrap"
+                  className="py-4 font-medium text-gray-900 whitespace-nowrap"
                 >
                   Women&rsquo;s Sneakers
                 </th>
-                <td class="py-4">₦15,999</td>
-                <td class="py-4">12</td>
+                <td className="py-4">₦15,999</td>
+                <td className="py-4">12</td>
 
-                {/* <td class="py-4 text-right">
+                {/* <td className="py-4 text-right">
                   <button className="btn btn-xs btn-outline">Manage product</button> 
                 </td> */}
               </tr>
-              <tr class="border-b text-lg">
+              <tr className="border-b text-lg">
                 <td>
                   <div
                     className="w-16 bg-cover bg-center h-16 rounded-full bg-gray-500 overflow-hidden"
@@ -189,18 +189,18 @@ const Store1 = () => {
                 </td>
                 <th
                   scope="row"
-                  class="py-4 font-medium text-gray-900 whitespace-nowrap"
+                  className="py-4 font-medium text-gray-900 whitespace-nowrap"
                 >
                   Women&rsquo;s Versace Bag
                 </th>
-                <td class="py-4">₦40,999</td>
-                <td class="py-4">9</td>
+                <td className="py-4">₦40,999</td>
+                <td className="py-4">9</td>
 
-                {/* <td class="py-4 text-right">
+                {/* <td className="py-4 text-right">
                   <button className="btn btn-xs btn-outline">Manage product</button> 
                 </td> */}
               </tr>
-              <tr class="border-b text-lg">
+              <tr className="border-b text-lg">
                 <td>
                   <div
                     className="w-16 bg-cover bg-center h-16 rounded-full bg-gray-500 overflow-hidden"
@@ -211,14 +211,14 @@ const Store1 = () => {
                 </td>
                 <th
                   scope="row"
-                  class="py-4 font-medium text-gray-900 whitespace-nowrap"
+                  className="py-4 font-medium text-gray-900 whitespace-nowrap"
                 >
                   Mountain Bracelet
                 </th>
-                <td class="py-4">₦7,999</td>
-                <td class="py-4">11</td>
+                <td className="py-4">₦7,999</td>
+                <td className="py-4">11</td>
 
-                {/* <td class="py-4 text-right">
+                {/* <td className="py-4 text-right">
                   <button className="btn btn-xs btn-outline">Manage product</button> 
                 </td> */}
               </tr>
