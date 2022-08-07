@@ -4,10 +4,10 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from 'react';
 
 export default function Home() {
-  const createSecretKey = async () => {
-    const res = await axios.post("https://api.teamdune.pro/v1/create/app/key");
-    console.log("res", res.data);
-  };
+  // const createSecretKey = async () => {
+  //   const res = await axios.post("https://api.teamdune.pro/v1/create/app/key");
+  //   console.log("res", res.data);
+  // };
 
   const [transactions, setTransactions] = useState([]);
   const [totalValue, setTotalValue] = useState(0);

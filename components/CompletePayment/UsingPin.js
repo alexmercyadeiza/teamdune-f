@@ -1,5 +1,5 @@
-import React from 'react';
-import { Ring } from '@uiball/loaders';
+import React from "react";
+import { Ring } from "@uiball/loaders";
 
 const UsingPin = ({
   price,
@@ -17,24 +17,28 @@ const UsingPin = ({
       role="dialog"
       aria-modal="true"
     >
-      <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+      <div className="fixed inset-0 bg-gray-500 bg-opacity-40 transition-opacity"></div>
 
       <div className="fixed inset-0 z-10 grid place-items-center overflow-y-auto">
-        <div className="flex min-h-full w-1/4 items-end justify-center text-center sm:items-center sm:p-0">
-          {loading ? (
+        <div className="flex min-h-full w-1/3 items-end justify-center text-center sm:items-center sm:p-0">
+          {loading && (
             <div className="absolute top-1/2 z-50">
-              <Ring size={40} lineWeight={5} speed={2} color="black" />
+              <Ring
+                size={40}
+                lineWeight={5}
+                speed={2}
+                color="text-dune-brown"
+              />
             </div>
-          ) : (
-            ''
           )}
+
           <form
             onSubmit={pinOptionPayment}
-            className={`relative w-full transform space-y-12 overflow-hidden rounded-lg ${
-              loading ? 'blur-lg' : 'bg-white'
-            } p-10 text-left shadow-xl transition-all sm:my-8`}
+            className={`${
+              loading && `opacity-20`
+            } relative w-full transform space-y-12 overflow-hidden rounded-lg bg-white p-10 text-left shadow-xl transition-all sm:my-8`}
           >
-            <div className="bg-white">
+            <div className="">
               <div className="">
                 <div className="space-y-10 text-center sm:mt-0 sm:text-left">
                   <div className="flex justify-between">
@@ -47,7 +51,7 @@ const UsingPin = ({
                       </h3>
                     </div>
                     <svg
-                      onClick={() => handleShow('')}
+                      onClick={() => handleShow("")}
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6 cursor-pointer hover:opacity-70"
                       fill="none"
@@ -73,7 +77,7 @@ const UsingPin = ({
                       value={phone}
                       onChange={handleChangePin}
                       type="text"
-                      className="mt-0 w-full border-0 border-b-2 border-gray-200 px-0.5 focus:border-black focus:ring-0"
+                      className="mt-0 w-full border-0 bg-transparent border-b-2 border-gray-200 px-0.5 focus:border-black focus:ring-0"
                       placeholder="Phone Number"
                       required
                     />
@@ -81,8 +85,8 @@ const UsingPin = ({
                       name="pin"
                       value={pin}
                       onChange={handleChangePin}
-                      type="text"
-                      className="mt-0 w-full border-0 border-b-2 border-gray-200 px-0.5 focus:border-black focus:ring-0"
+                      type="password"
+                      className="mt-0 w-full border-0 bg-transparent border-b-2 border-gray-200 px-0.5 focus:border-black focus:ring-0"
                       placeholder="Pin"
                       required
                     />

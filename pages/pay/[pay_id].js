@@ -148,17 +148,17 @@ const PayId = () => {
   console.log('payid', payid);
   console.log('show', show);
 
-  return show === '' ? (
+  return show === "" ? (
     <div
       className="relative z-10"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
     >
-      <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+      <div className="fixed inset-0 bg-gray-500 bg-opacity-40 transition-opacity"></div>
 
       <div className="fixed inset-0 z-10 grid place-items-center overflow-y-auto">
-        <div className="flex min-h-full max-w-[356px] items-end justify-center text-center sm:items-center sm:p-0">
+        <div className="flex min-h-full w-1/3 items-end justify-center text-center sm:items-center sm:p-0">
           <form className="relative w-full transform space-y-12 overflow-hidden rounded-lg bg-white p-10 text-left shadow-xl transition-all sm:my-8">
             <div className="bg-white">
               <div className="">
@@ -274,7 +274,7 @@ const PayId = () => {
         </div>
       </div>
     </div>
-  ) : show === 'Email' ? (
+  ) : show === "Email" ? (
     <UsingEmail
       price={price}
       handleShow={handleShow}
@@ -284,7 +284,7 @@ const PayId = () => {
       emailOptionPayment={emailOptionPayment}
       loading={loading}
     />
-  ) : show === 'Pin' ? (
+  ) : show === "Pin" ? (
     <UsingPin
       price={price}
       handleShow={handleShow}
@@ -294,7 +294,7 @@ const PayId = () => {
       pinOptionPayment={pinOptionPayment}
       loading={loading}
     />
-  ) : show === 'complete' ? (
+  ) : show === "complete" ? (
     <Success />
   ) : null;
 };
