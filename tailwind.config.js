@@ -10,7 +10,7 @@ module.exports = {
         sans: ["Switzer"],
       },
       colors: {
-        "dune-brown": "#BE782F",
+        "dune-brown": "#003B73",
       },
     },
   },
