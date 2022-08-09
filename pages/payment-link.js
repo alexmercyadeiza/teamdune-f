@@ -50,7 +50,7 @@ const Paymentlink = () => {
     e.preventDefault();
     const res = await axios.post(
       'https://api.teamdune.pro/v1/pay/create',
-      { merchant_id: 1, amount },
+      { merchant_id: 1, amount: amount * 100 },
       {
         headers: {
           'dune-sec-key': 'live_sk_d2e10c31c3d808557fe522ce',
