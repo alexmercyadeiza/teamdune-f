@@ -8,21 +8,21 @@ const products = [
     name: 'Adidas Women&rsquo;s Bag',
     image:
       'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/white-female-shoes-on-feet-royalty-free-image-912581410-1563805834.jpg?crop=1.00xw:0.752xh;0,0.127xh&resize=1200:*',
-    price: '15999',
+    price: '15',
   },
   {
     id: 2,
     name: 'Versace Women&rsquo;s Bag',
     image:
       'https://cdn-images.farfetch-contents.com/16/35/97/17/16359717_31604176_600.jpg',
-    price: '40999',
+    price: '4000',
   },
   {
     id: 3,
     name: 'Mountain Bracelet',
     image:
       'https://cdn.shopify.com/s/files/1/0137/7432/3812/products/IMG_20220416_153918_1024x1024@2x.jpg?v=1650118316',
-    price: '7999',
+    price: '80',
   },
 ];
 
